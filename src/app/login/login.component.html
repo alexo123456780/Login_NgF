@@ -1,0 +1,63 @@
+<div class="login-container">
+  <div class="login-content">
+    <div class="login-form-container">
+      <h2>WELCOME BACK</h2>
+      <p class="subtitle">Please enter your credentials to continue</p>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="form-group">
+          <i class="pi pi-user"></i>
+          <input 
+            id="username" 
+            type="text" 
+            pInputText 
+            formControlName="username"
+            placeholder="Enter your username"
+          />
+        </div>
+        
+        <div class="form-group">
+          <i class="pi pi-lock"></i>
+          <input 
+            id="password" 
+            type="password" 
+            pInputText
+            formControlName="password"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <div class="form-options">
+          <a href="#" class="forgot-link">
+            <i class="pi pi-question-circle"></i>
+            Forgot password?
+          </a>
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid">Sign in</button>
+      </form>
+
+      <div class="signup-prompt">
+        <span>Don't have an account?</span>
+        <a routerLink="/register" class="signup-link">
+          <i class="pi pi-user-plus"></i>
+          Sign up now
+        </a>
+      </div>
+
+      <div class="messages">
+        <div *ngIf="errorMessage" class="error-message">
+          <i class="pi pi-times-circle"></i>
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="success-message">
+          <i class="pi pi-check-circle"></i>
+          {{ successMessage }}
+        </div>
+      </div>
+    </div>
+    <div class="animated-side">
+      <div class="animated-background"></div>
+    </div>
+  </div>
+</div>

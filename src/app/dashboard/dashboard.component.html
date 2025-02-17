@@ -1,0 +1,100 @@
+<div class="dashboard-container">
+    <!-- Barra lateral -->
+    <div class="sidebar">
+      <div class="logo">
+        <i class="pi pi-at"></i>
+        <span>Tu Empresa</span>
+      </div>
+      <nav>
+        <a href="#" class="active"><i class="pi pi-home"></i></a>
+        <a href="#"><i class="pi pi-flag"></i></a>
+        <a href="#"><i class="pi pi-chart-pie"></i></a>
+        <a href="#"><i class="pi pi-envelope"></i></a>
+        <a href="#"><i class="pi pi-file"></i></a>
+        <a href="#"><i class="pi pi-calendar"></i></a>
+        <a href="#"><i class="pi pi-users"></i></a>
+        <a href="#"><i class="pi pi-cog"></i></a>
+      </nav>
+    </div>
+  
+    <!-- Contenido principal -->
+    <div class="main-content">
+      <!-- Barra superior -->
+      <header class="top-bar">
+        <div class="search">
+          <i class="pi pi-search"></i>
+          <input type="text" placeholder="Buscar...">
+        </div>
+        <div class="user-info">
+          <i class="pi pi-bell"></i>
+          <span class="notification-badge">2</span>
+          <div class="user">
+            <span>{{ username || 'Usuario' }}</span>
+            <p-avatar icon="pi pi-user" shape="circle"></p-avatar>
+          </div>
+        </div>
+      </header>
+  
+      <!-- Tarjetas de métricas -->
+      <div class="metrics-grid">
+        <div class="metric-card dark">
+          <div class="metric-content">
+            <h3>Ventas Totales</h3>
+            <p class="metric-value">{{ totalSales | number }}</p>
+            <p class="metric-change">+2,031</p>
+          </div>
+          <i class="pi pi-shopping-cart"></i>
+        </div>
+  
+        <div class="metric-card">
+          <div class="metric-content">
+            <h3>Ingreso Total</h3>
+            <p class="metric-value">${{ totalIncome | number:'1.2-2' }}</p>
+            <p class="metric-change">+$2,201</p>
+          </div>
+          <i class="pi pi-dollar"></i>
+        </div>
+  
+        <div class="metric-card">
+          <div class="metric-content">
+            <h3>Sesiones Totales</h3>
+            <p class="metric-value">{{ totalSessions | number }}</p>
+            <p class="metric-change">+2,392</p>
+          </div>
+          <i class="pi pi-users"></i>
+        </div>
+  
+        <div class="metric-card">
+          <div class="metric-content">
+            <h3>Tasa de Conversión</h3>
+            <p class="metric-value">{{ conversionRate }}%</p>
+            <p class="metric-change">+1.2%</p>
+          </div>
+          <i class="pi pi-percentage"></i>
+        </div>
+      </div>
+  
+      <!-- Gráficos -->
+      <div class="charts-container">
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Rendimiento de Ventas</h3>
+            <button class="settings-btn">
+              <i class="pi pi-cog"></i>
+            </button>
+          </div>
+          <p-chart type="line" [data]="salesData" [options]="{ plugins: { legend: { position: 'bottom' } } }"></p-chart>
+        </div>
+  
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Categorías Populares</h3>
+            <button class="settings-btn">
+              <i class="pi pi-cog"></i>
+            </button>
+          </div>
+          <p-chart type="doughnut" [data]="categoryData" [options]="{ plugins: { legend: { position: 'bottom' } } }"></p-chart>
+        </div>
+      </div>
+    </div>
+  </div>
