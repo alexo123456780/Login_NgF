@@ -21,6 +21,7 @@
   flex-direction: column;
   justify-content: center;
   overflow-y: auto;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .animated-side {
@@ -58,11 +59,23 @@
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 h2 {
   font-size: 32px;
   margin-bottom: 10px;
   text-align: center;
   color: #4F46E5;
+  animation: fadeIn 0.5s ease-out 0.2s both;
 }
 
 .subtitle {
@@ -70,6 +83,7 @@ h2 {
   color: #6b7280;
   margin-bottom: 30px;
   font-size: 16px;
+  animation: fadeIn 0.5s ease-out 0.3s both;
 }
 
 .register-form {
@@ -83,6 +97,7 @@ h2 {
 
 .form-group {
   position: relative;
+  animation: fadeIn 0.5s ease-out 0.4s both;
 }
 
 .form-group i {
@@ -117,17 +132,24 @@ button {
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
   margin-bottom: 20px;
+  animation: fadeIn 0.5s ease-out 0.6s both;
 }
 
 button:hover {
   background-color: #4338CA;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 .login-link {
   text-align: center;
   margin-top: 20px;
+  animation: fadeIn 0.5s ease-out 0.7s both;
 }
 
 .login-link p {
@@ -139,27 +161,30 @@ button:hover {
   color: #4F46E5;
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.3s;
 }
 
 .login-link a:hover {
+  color: #4338CA;
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .register-content {
     flex-direction: column-reverse;
   }
 
   .animated-side {
-    height: 200px;
+    height: 30vh;
   }
 
   .register-form-container {
     padding: 30px;
+    height: 70vh;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .register-form-container {
     padding: 20px;
   }
@@ -170,5 +195,9 @@ button:hover {
 
   .subtitle {
     font-size: 14px;
+  }
+
+  .register-form {
+    max-width: 100%;
   }
 }

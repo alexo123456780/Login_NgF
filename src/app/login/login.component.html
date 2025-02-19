@@ -1,8 +1,8 @@
 <div class="login-container">
   <div class="login-content">
     <div class="login-form-container">
-      <h2>WELCOME BACK</h2>
-      <p class="subtitle">Please enter your credentials to continue</p>
+      <h2>Bienvenido</h2>
+      <p class="subtitle">Ingresa tus credenciales para continuar</p>
       
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
         <div class="form-group">
@@ -12,7 +12,7 @@
             type="text" 
             pInputText 
             formControlName="username"
-            placeholder="Enter your username"
+            placeholder="Ingrese su nombre de usuario"
           />
         </div>
         
@@ -23,18 +23,12 @@
             type="password" 
             pInputText
             formControlName="password"
-            placeholder="Enter your password"
+            placeholder="Ingrese su pasword"
           />
         </div>
 
-        <div class="form-options">
-          <a href="#" class="forgot-link">
-            <i class="pi pi-question-circle"></i>
-            Forgot password?
-          </a>
-        </div>
 
-        <button type="submit" [disabled]="loginForm.invalid">Sign in</button>
+        <button type="submit" [disabled]="loginForm.invalid">Iniciar Sesion</button>
       </form>
 
       <div class="signup-prompt">
