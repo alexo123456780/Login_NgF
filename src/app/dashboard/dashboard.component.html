@@ -1,21 +1,26 @@
 <div class="dashboard-container">
-    <!-- Barra lateral -->
-    <div class="sidebar">
-      <div class="logo">
-        <i class="pi pi-at"></i>
-        <span>Tu Empresa</span>
-      </div>
-      <nav>
-        <a href="#" class="active"><i class="pi pi-home"></i></a>
-        <a href="#"><i class="pi pi-flag"></i></a>
-        <a href="#"><i class="pi pi-chart-pie"></i></a>
-        <a href="#"><i class="pi pi-envelope"></i></a>
-        <a href="#"><i class="pi pi-file"></i></a>
-        <a href="#"><i class="pi pi-calendar"></i></a>
-        <a href="#"><i class="pi pi-users"></i></a>
-        <a href="#"><i class="pi pi-cog"></i></a>
-      </nav>
+  <!-- Barra lateral -->
+  <div class="sidebar">
+    <div class="logo">
+      <i class="pi pi-at"></i>
+      <span>Tu Empresa</span>
     </div>
+    <nav>
+      <div class="nav-item" *ngFor="let item of navItems">
+        <a [href]="item.link" [class.active]="item.link === activeLink">
+          <i [class]="item.icon"></i>
+          <span class="nav-label">{{item.label}}</span>
+        </a>
+        <!-- Submenú -->
+        <div class="submenu" *ngIf="item.subItems">
+          <a [href]="subItem.link" *ngFor="let subItem of item.subItems">
+            <i [class]="subItem.icon"></i>
+            <span>{{subItem.label}}</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
   
     <!-- Contenido principal -->
     <div class="main-content">
@@ -29,9 +34,10 @@
           <i class="pi pi-bell"></i>
           <span class="notification-badge">2</span>
           <div class="user">
-            <span>{{ username || 'Usuario' }}</span>
+            <span>{{ username || 'username' }}</span>
             <p-avatar icon="pi pi-user" shape="circle"></p-avatar>
           </div>
+          <a href="#"><i class="pi-sign-out"></i>Cerrar Sesion</a>
         </div>
       </header>
   
