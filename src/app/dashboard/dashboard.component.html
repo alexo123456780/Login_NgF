@@ -7,102 +7,105 @@
     </div>
     <nav>
       <div class="nav-item" *ngFor="let item of navItems">
-        <a [href]="item.link" [class.active]="item.link === activeLink">
+        <a [href]="item.link" 
+           [class.active]="item.link === activeLink"
+           (click)="$event.preventDefault(); toggleSubmenu(item.link)">
           <i [class]="item.icon"></i>
           <span class="nav-label">{{item.label}}</span>
         </a>
-        <!-- Submenú -->
-        <div class="submenu" *ngIf="item.subItems">
-          <a [href]="subItem.link" *ngFor="let subItem of item.subItems">
-            <i [class]="subItem.icon"></i>
-            <span>{{subItem.label}}</span>
-          </a>
+        <div class="submenu" [class.active]="activeSubmenu === item.link" *ngIf="item.subItems">
+          <div class="submenu-header">
+            <h3>{{item.label}}</h3>
+          </div>
+          <div class="submenu-content">
+            <a [href]="subItem.link" *ngFor="let subItem of item.subItems">
+              <i [class]="subItem.icon"></i>
+              <span>{{subItem.label}}</span>
+            </a>
+          </div>
         </div>
       </div>
     </nav>
   </div>
-  
 
-    <div class="main-content">
-      <!-- Barra superior -->
-      <header class="top-bar">
-        <div class="search">
-          <i class="pi pi-search"></i>
-          <input type="text" placeholder="Buscar...">
-        </div>
-        <div class="user-info">
-          <i class="pi pi-bell"></i>
-          <span class="notification-badge">2</span>
-          <div class="user">
-            <span>{{ username || 'username' }}</span>
-            <p-avatar icon="pi pi-user" shape="circle"></p-avatar>
-          </div>
-          <a href="#"><i class="pi-sign-out"></i>Cerrar Sesion</a>
-        </div>
-      </header>
-
-      
-  
-      <!-- Tarjetas de métricas -->
-      <div class="metrics-grid">
-        <div class="metric-card dark">
-          <div class="metric-content">
-            <h3>Ventas Totales</h3>
-            <p class="metric-value">{{ totalSales | number }}</p>
-            <p class="metric-change">+2,031</p>
-          </div>
-          <i class="pi pi-shopping-cart"></i>
-        </div>
-  
-        <div class="metric-card">
-          <div class="metric-content">
-            <h3>Ingreso Total</h3>
-            <p class="metric-value">${{ totalIncome | number:'1.2-2' }}</p>
-            <p class="metric-change">+$2,201</p>
-          </div>
-          <i class="pi pi-dollar"></i>
-        </div>
-  
-        <div class="metric-card">
-          <div class="metric-content">
-            <h3>Sesiones Totales</h3>
-            <p class="metric-value">{{ totalSessions | number }}</p>
-            <p class="metric-change">+2,392</p>
-          </div>
-          <i class="pi pi-users"></i>
-        </div>
-  
-        <div class="metric-card">
-          <div class="metric-content">
-            <h3>Tasa de Conversión</h3>
-            <p class="metric-value">{{ conversionRate }}%</p>
-            <p class="metric-change">+1.2%</p>
-          </div>
-          <i class="pi pi-percentage"></i>
-        </div>
+  <div class="main-content">
+    <!-- Barra superior -->
+    <header class="top-bar">
+      <div class="search">
+        <i class="pi pi-search"></i>
+        <input type="text" placeholder="Buscar...">
       </div>
-  
-      <!-- Gráficos -->
-      <div class="charts-container">
-        <div class="chart-card">
-          <div class="chart-header">
-            <h3>Rendimiento de Ventas</h3>
-            <button class="settings-btn">
-              <i class="pi pi-cog"></i>
-            </button>
-          </div>
-          <p-chart type="line" [data]="salesData" [options]="{ plugins: { legend: { position: 'bottom' } } }"></p-chart>
+      <div class="user-info">
+        <i class="pi pi-bell"></i>
+        <span class="notification-badge">2</span>
+        <div class="user">
+          <span>{{ username || 'username' }}</span>
+          <p-avatar icon="pi pi-user" shape="circle"></p-avatar>
         </div>
-  
-        <div class="chart-card">
-          <div class="chart-header">
-            <h3>Categorías Populares</h3>
-            <button class="settings-btn">
-              <i class="pi pi-cog"></i>
-            </button>
-          </div>
-          <p-chart type="doughnut" [data]="categoryData" [options]="{ plugins: { legend: { position: 'bottom' } } }"></p-chart>
+        <a href="#" (click)="logout()"><i class="pi pi-sign-out"></i>Cerrar Sesión</a>
+      </div>
+    </header>
+
+    <!-- Tarjetas de métricas -->
+    <div class="metrics-grid">
+      <div class="metric-card dark">
+        <div class="metric-content">
+          <h3>Ventas Totales</h3>
+          <p class="metric-value">{{ totalSales | number }}</p>
+          <p class="metric-change">+2,031</p>
         </div>
+        <i class="pi pi-shopping-cart"></i>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-content">
+          <h3>Ingreso Total</h3>
+          <p class="metric-value">${{ totalIncome | number:'1.2-2' }}</p>
+          <p class="metric-change">+$2,201</p>
+        </div>
+        <i class="pi pi-dollar"></i>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-content">
+          <h3>Sesiones Totales</h3>
+          <p class="metric-value">{{ totalSessions | number }}</p>
+          <p class="metric-change">+2,392</p>
+        </div>
+        <i class="pi pi-users"></i>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-content">
+          <h3>Tasa de Conversión</h3>
+          <p class="metric-value">{{ conversionRate }}%</p>
+          <p class="metric-change">+1.2%</p>
+        </div>
+        <i class="pi pi-percentage"></i>
+      </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="charts-container">
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>Rendimiento de Ventas</h3>
+          <button class="settings-btn">
+            <i class="pi pi-cog"></i>
+          </button>
+        </div>
+        <p-chart type="line" [data]="salesData" [options]="{ plugins: { legend: { position: 'bottom' } } }"></p-chart>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>Categorías Populares</h3>
+          <button class="settings-btn">
+            <i class="pi pi-cog"></i>
+          </button>
+        </div>
+        <p-chart type="doughnut" [data]="categoryData" [options]="{ plugins: { legend: { position: 'bottom' } } }"></p-chart>
       </div>
     </div>
   </div>
+</div>

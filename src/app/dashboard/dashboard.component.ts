@@ -2,43 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { CookieService } from 'ngx-cookie-service';
 
-interface NavItem{
+interface NavItem {
   icon: string;
   label: string;
   link: string;
-  subItems?:NavItem[];
-
+  subItems?: NavItem[];
 }
-
-
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-
-
 export class DashboardComponent implements OnInit {
   username: string = '';
   salesData: any;
   categoryData: any;
-
   activeLink: string = '#';
+  activeSubmenu: string | null = null;
 
   totalSales: number = 21324;
   totalIncome: number = 221324.50;
   totalSessions: number = 16703;
   conversionRate: number = 12.8;
 
-
-  // Método para manejar la activación de enlaces
-  setActiveLink(link: string) {
+  toggleSubmenu(link: string) {
+    if (this.activeSubmenu === link) {
+      this.activeSubmenu = null;
+    } else {
+      this.activeSubmenu = link;
+    }
     this.activeLink = link;
   }
 
-  navItems: NavItem[] = 
-  [
+  navItems: NavItem[] = [
     {
       icon: 'pi pi-home',
       label: 'Inicio',
@@ -113,34 +110,20 @@ export class DashboardComponent implements OnInit {
         { icon: 'pi pi-bell', label: 'Notificaciones', link: '#notifications' }
       ]
     }
+  ];
 
-
-  ]
-
-
-
-
-
-
-
-  constructor(private authService: AuthService, private cookieService: CookieService) { // Inyectar AuthService
+  constructor(private authService: AuthService, private cookieService: CookieService) {
     this.initChartData();
   }
 
-
-  ngOnInit():void {
-
-    
+  ngOnInit(): void {
     this.username = this.cookieService.get('username');
-  
   }
 
-  // Método de cerrar sesión
   logout() {
-    this.authService.logout(); // Llama al método de logout en AuthService
-    this.username = ''; // Limpiar el nombre de usuario en el dashboard
+    this.authService.logout();
+    this.username = '';
   }
-
 
   private initChartData() {
     this.salesData = {
