@@ -30,17 +30,19 @@
 
   <div class="main-content">
     <!-- Barra superior -->
-    <header class="top-bar">
+    <header class="top-bar glass-effect">
       <div class="search">
-        <i class="pi pi-search"></i>
         <input type="text" placeholder="Buscar...">
+        <i class="pi pi-search"></i>
       </div>
       <div class="user-info">
-        <i class="pi pi-bell"></i>
-        <span class="notification-badge">2</span>
+        <div class="notification-container">
+          <i class="pi pi-bell"></i>
+          <span class="notification-badge">2</span>
+        </div>
         <div class="user">
           <span>{{ username || 'username' }}</span>
-          <p-avatar icon="pi pi-user" shape="circle"></p-avatar>
+          <p-avatar icon="pi pi-user" shape="circle" styleClass="p-overlay-badge"></p-avatar>
         </div>
         <a href="#" (click)="logout()"><i class="pi pi-sign-out"></i>Cerrar Sesión</a>
       </div>
@@ -48,7 +50,7 @@
 
     <!-- Tarjetas de métricas -->
     <div class="metrics-grid">
-      <div class="metric-card dark">
+      <div class="metric-card dark neon-effect">
         <div class="metric-content">
           <h3>Ventas Totales</h3>
           <p class="metric-value">{{ totalSales | number }}</p>
@@ -94,7 +96,7 @@
             <i class="pi pi-cog"></i>
           </button>
         </div>
-        <p-chart type="line" [data]="salesData" [options]="{ plugins: { legend: { position: 'bottom' } } }"></p-chart>
+        <p-chart type="line" [data]="salesData" [options]="chartOptions"></p-chart>
       </div>
 
       <div class="chart-card">
@@ -104,7 +106,33 @@
             <i class="pi pi-cog"></i>
           </button>
         </div>
-        <p-chart type="doughnut" [data]="categoryData" [options]="{ plugins: { legend: { position: 'bottom' } } }"></p-chart>
+        <p-chart type="doughnut" [data]="categoryData" [options]="doughnutOptions"></p-chart>
+      </div>
+    </div>
+    
+    <!-- Actividad reciente -->
+    <div class="recent-activity-container">
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>Actividad Reciente</h3>
+          <button class="settings-btn">
+            <i class="pi pi-cog"></i>
+          </button>
+        </div>
+        <div class="activity-list">
+          <div class="activity-item" *ngFor="let activity of recentActivities">
+            <div class="activity-icon" [ngClass]="activity.type">
+              <i [class]="activity.icon"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-header">
+                <h4>{{ activity.title }}</h4>
+                <span class="activity-time">{{ activity.time }}</span>
+              </div>
+              <p>{{ activity.description }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

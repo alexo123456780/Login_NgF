@@ -1,1 +1,201 @@
 /* You can add global styles to this file, and also import other style files */
+/* Estilos globales adicionales */
+
+/* Fuente personalizada */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #f5f7f9;
+}
+
+/* Estilos para la sección de actividad reciente */
+.recent-activity-container {
+  margin-top: 30px;
+  animation: fadeIn 0.5s ease-out 0.9s both;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.activity-item:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.activity-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.activity-icon i {
+  font-size: 20px;
+  color: white;
+}
+
+.activity-icon.sale {
+  background: linear-gradient(135deg, #2e7d32, #43a047);
+}
+
+.activity-icon.user {
+  background: linear-gradient(135deg, #1976d2, #2196f3);
+}
+
+.activity-icon.alert {
+  background: linear-gradient(135deg, #e53935, #f44336);
+}
+
+.activity-icon.update {
+  background: linear-gradient(135deg, #7b1fa2, #9c27b0);
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.activity-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.activity-time {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.activity-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Mejoras en los componentes de PrimeNG */
+:root {
+  --primary-color: #2e7d32;
+  --primary-color-light: #43a047;
+  --primary-color-dark: #1b5e20;
+  --surface-a: #ffffff;
+  --surface-b: #f5f7f9;
+  --surface-c: #eaeaea;
+  --surface-d: #d9d9d9;
+  --text-color: #333333;
+  --text-color-secondary: #666666;
+}
+
+/* Mejoras en los avatares */
+.p-avatar {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+/* Mejoras en los botones */
+.p-button {
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  transition: all 0.3s ease !important;
+}
+
+.p-button:hover {
+  background: var(--primary-color-dark) !important;
+  border-color: var(--primary-color-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(46, 125, 50, 0.2) !important;
+}
+
+/* Mejoras en los inputs */
+.p-inputtext:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2) !important;
+}
+
+/* Animaciones para elementos de la interfaz */
+@keyframes slideInRight {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.notification-container {
+  position: relative;
+  animation: pulse 2s infinite;
+}
+
+/* Mejoras en la accesibilidad */
+button:focus, a:focus, input:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Mejoras en el contraste */
+.dark .metric-content h3,
+.dark .metric-value,
+.dark .metric-change {
+  color: white !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Efectos de hover mejorados */
+.user:hover, .settings-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Mejoras en la responsividad */
+@media (max-width: 768px) {
+  .activity-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .activity-icon {
+    margin-bottom: 10px;
+  }
+  
+  .activity-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .activity-time {
+    margin-top: 5px;
+  }
+}
