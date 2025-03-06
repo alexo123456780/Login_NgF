@@ -13,7 +13,7 @@ export class AuthService {
 
    private apiUrl = environment.apiUrl;
 
-   constructor(private http: HttpClient, private cookieService: CookieService) {} // Inyectar el servicio de cookies
+   constructor(private http: HttpClient, private cookieService: CookieService) {} 
 
 
    login(credentials: any) {
@@ -25,7 +25,7 @@ export class AuthService {
         tap((response: any) => {
             if (response && response.username) {
                 this.cookieService.set('username', response.username);
-                console.log('Cookie guardada:', this.cookieService.get('username')); // Log para verificar
+                console.log('Cookie guardada:', this.cookieService.get('username')); 
             }
         })
     );
@@ -42,8 +42,8 @@ export class AuthService {
    }
 
    logout() {
-    this.cookieService.delete('username'); // Eliminar la cookie
-    console.log('Sesión cerrada, cookie eliminada.'); // Log para verificar
+    this.cookieService.delete('username'); 
+    console.log('Sesión cerrada, cookie eliminada.'); 
 }
 
    
